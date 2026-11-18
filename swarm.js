@@ -38,7 +38,7 @@
   const BLUE = "#EC4899";
   const RED = "#F43F5E";
   const RULER = 20;
-  const MIN_AGENTS = 8;
+  const MIN_AGENTS = 16;
   const MAX_AGENTS = 48;
   const FLOCK_AGENTS = 36;
   const INTRO_AGENTS = 18;
@@ -2089,7 +2089,7 @@
       this.frontier = 0;
       this.vel = 0;
       this.tempo = 1;
-      this.speed = 1;
+      this.speed = 1.65;
       this.time = 0;
       this.rulers = { want: 0, t: 0, lastNeed: -10 };
       this.lastScroll = null;
@@ -3040,7 +3040,7 @@
       this.tour = true;
       this.tourV = 0;
       this.tourAcc = 0;
-      this.tourDelay = 2.6;
+      this.tourDelay = 1.4;
       this.manualPauseUntil = 0;
       this.complete = false;
       this.timing = {};
@@ -3081,15 +3081,12 @@
       this.view.bg.classList.add("on");
       this.view.intro.classList.add("on");
       const mark = (k) => (this.timing[k] = Math.round(performance.now() - this.t0));
-      await sleep(520);
+      await sleep(30);
       await unhidePage();
       mark("blank");
       if (this.dead) return;
-      await this.scan();
-      mark("scan");
-      if (this.dead) return;
       try {
-        await Promise.race([document.fonts.ready, sleep(1200)]);
+        await Promise.race([document.fonts.ready, sleep(1000)]);
       } catch (_) {}
       mark("fonts");
       this.view.measure();
@@ -3111,7 +3108,7 @@
       this.engine.setModel(model);
       this.model = model;
       mark("mount");
-      const wait = 1400 - (performance.now() - this.t0);
+      const wait = 260 - (performance.now() - this.t0);
       if (wait > 0) await sleep(wait);
       if (this.dead) return;
       this.env.scrollTo(0, 0);
@@ -3209,8 +3206,8 @@
       }
       const crew = Math.max(MIN_AGENTS, E.cursors.filter((c) => !c.leaving).length);
       const backlog = E.backlog();
-      const target = backlog <= Math.max(6, crew * 0.65) ? 140 : backlog <= crew * 1.6 ? 62 : 20;
-      this.tourV += (target - this.tourV) * Math.min(1, dt * 2.0);
+      const target = backlog <= Math.max(8, crew * 0.75) ? 210 : backlog <= crew * 1.8 ? 105 : 35;
+      this.tourV += (target - this.tourV) * Math.min(1, dt * 2.5);
       this.tourAcc += this.tourV * dt;
       if (this.tourAcc >= 1) {
         const d = Math.floor(this.tourAcc);
@@ -3351,17 +3348,12 @@
 
   const autoBoot = () => {
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-    const launch = () => setTimeout(() => {
-      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-      if (!app) start();
-    }, 140);
-    if (document.fonts && document.fonts.ready) {
-      Promise.race([document.fonts.ready, sleep(1500)]).then(launch);
-    } else {
-      launch();
-    }
+    if (!app) start();
   };
 
-  if (document.readyState === "complete") autoBoot();
-  else window.addEventListener("load", autoBoot, { once: true });
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", autoBoot, { once: true });
+  } else {
+    autoBoot();
+  }
 })();

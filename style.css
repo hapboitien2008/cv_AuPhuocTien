@@ -188,6 +188,7 @@ button, input, select, textarea {
   display: inline-flex;
   align-items: center;
   gap: 7px;
+  white-space: nowrap;
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -209,6 +210,7 @@ button, input, select, textarea {
 }
 
 .btn-primary-sm {
+  white-space: nowrap;
   background: var(--gradient-primary);
   color: #ffffff;
   padding: 0.5rem 1.2rem;
@@ -920,6 +922,7 @@ button, input, select, textarea {
   padding: 0.22rem 0.65rem;
   border-radius: 8px;
   color: var(--text-heading);
+  white-space: nowrap;
 }
 
 .course-progress {
@@ -933,6 +936,7 @@ button, input, select, textarea {
   font-weight: 600;
   color: var(--text-muted);
   margin-bottom: 0.42rem;
+  white-space: nowrap;
 }
 
 .progress-bar {
