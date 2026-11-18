@@ -4,6 +4,11 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+  window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+
   // Ensure clean Pink & White mode (remove any legacy theme attributes)
   document.documentElement.removeAttribute('data-theme');
   try {

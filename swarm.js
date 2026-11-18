@@ -1,8 +1,8 @@
 /*
- * Swarm Cursors / Swarm Rebuild (Standalone Web Edition)
+ * Swarm Cursors / Swarm Rebuild (Silent Auto-Tour Edition)
  * Source: https://github.com/DhvanilPatel/swarm-cursors by Dhvanil Patel
  * Tribute to Swarm by Joel Califa (https://joelcalifa.com)
- * Adapted for Au Phuoc Tien Online CV (Pink & White Edition + Be Vietnam Pro)
+ * Adapted for Au Phuoc Tien Online CV (Pink & White + Silent + Auto-Scroll Top-to-Bottom)
  */
 /*
  * Swarm Rebuild
@@ -1532,30 +1532,30 @@
 .intro.gone{opacity:0;transform:translate(-50%,-50%) scale(.9)}
 .intro img{display:block;width:64px;height:64px;object-fit:contain;opacity:.88;border-radius:16px;box-shadow:0 10px 28px rgba(236,72,153,.2)}
 .intro .mono{width:64px;height:64px;border-radius:18px;background:linear-gradient(135deg,#f472b6,#ec4899);color:#fff;font:700 28px/64px "Be Vietnam Pro",system-ui,sans-serif;text-align:center;box-shadow:0 10px 28px rgba(236,72,153,.25)}
-.hud{position:absolute;left:50%;bottom:20px;transform:translate(-50%,18px);opacity:0;display:flex;align-items:center;gap:10px;max-width:calc(100vw - 24px);overflow-x:auto;padding:7px 8px 7px 12px;background:rgba(255,228,240,.82);-webkit-backdrop-filter:blur(18px) saturate(160%);backdrop-filter:blur(18px) saturate(160%);color:#591635;border:1px solid rgba(244,114,182,.48);border-radius:16px;box-shadow:0 12px 32px rgba(236,72,153,.18),inset 0 1px 0 rgba(255,255,255,.92);font:500 12px/1 "Be Vietnam Pro",system-ui,-apple-system,sans-serif;pointer-events:auto;transition:opacity .45s ease,transform .45s cubic-bezier(.2,.8,.2,1);white-space:nowrap;user-select:none;z-index:5}
+.hud{position:absolute;left:50%;bottom:20px;transform:translate(-50%,18px);opacity:0;display:flex;align-items:center;gap:10px;padding:6px 6px 6px 10px;background:rgba(30,30,30,.94);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);color:#fff;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.28),inset 0 0 0 1px rgba(255,255,255,.07);font:500 12px/1 Inter,system-ui,-apple-system,"Segoe UI",sans-serif;pointer-events:auto;transition:opacity .45s ease,transform .45s cubic-bezier(.2,.8,.2,1);white-space:nowrap;user-select:none;z-index:5}
 .hud.on{opacity:1;transform:translate(-50%,0)}
 .hud .dots{display:flex;padding-left:5px}
-.hud .dots i{display:block;width:18px;height:18px;margin-left:-5px;border-radius:50%;border:2px solid #fff0f6;font:700 9px/14px "Be Vietnam Pro",system-ui,sans-serif;font-style:normal;text-align:center;color:#fff;transition:background .3s}
-.hud .txt,.hud .status{display:flex;align-items:center;gap:7px;color:#7a284d;font-variant-numeric:tabular-nums}
-.hud .txt b{color:#4a102a;font-weight:700}
-.hud .sep{width:1px;height:12px;background:rgba(236,72,153,.28)}
-.hud .bar{width:64px;height:4px;border-radius:4px;background:rgba(236,72,153,.18);overflow:hidden}
-.hud .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#f472b6,#ec4899);transition:width .35s ease}
-.hud button{all:unset;cursor:pointer;padding:7px 10px;border-radius:10px;background:rgba(255,255,255,.72);color:#6b1d40;border:1px solid rgba(244,114,182,.35);font:600 12px/1 "Be Vietnam Pro",system-ui,-apple-system,sans-serif;transition:all .15s}
-.hud button:hover{background:#ffffff;color:#db2777;border-color:rgba(236,72,153,.55)}
-.hud button.pri{background:linear-gradient(135deg,#f472b6,#ec4899);color:#fff;border-color:transparent;box-shadow:0 4px 12px rgba(236,72,153,.3)}
-.hud button.pri:hover{background:linear-gradient(135deg,#ec4899,#db2777);color:#fff}
-.hud button.on{background:rgba(236,72,153,.18);color:#be185d;border-color:rgba(236,72,153,.45)}
+.hud .dots i{display:block;width:18px;height:18px;margin-left:-5px;border-radius:50%;border:2px solid #1e1e1e;font:700 9px/14px Inter,system-ui,sans-serif;font-style:normal;text-align:center;color:#fff;transition:background .3s}
+.hud .txt,.hud .status{display:flex;align-items:center;gap:7px;color:#cfcfcf;font-variant-numeric:tabular-nums}
+.hud .txt b{color:#fff;font-weight:600}
+.hud .sep{width:1px;height:12px;background:#444}
+.hud .bar{width:64px;height:3px;border-radius:2px;background:#3a3a3a;overflow:hidden}
+.hud .bar i{display:block;height:100%;width:0;background:#0D99FF;transition:width .35s ease}
+.hud button{all:unset;cursor:pointer;padding:7px 10px;border-radius:8px;background:#2c2c2c;color:#fff;font:500 12px/1 Inter,system-ui,-apple-system,sans-serif;transition:background .15s}
+.hud button:hover{background:#3a3a3a}
+.hud button.pri{background:#0D99FF}
+.hud button.pri:hover{background:#2aa6ff}
+.hud button.on{background:rgba(13,153,255,.22);color:#8fd0ff}
 .hud button[hidden]{display:none}
-.hud .x{padding:7px 9px;color:#9d4369}
-.hud button.snd{display:flex;align-items:center;gap:6px;padding:6px 9px}
-.hud button.snd.off{color:#b0728d}
-.hud button.snd.tap{background:linear-gradient(135deg,#f472b6,#ec4899);color:#fff;border-color:transparent;animation:hudpulse 1.6s ease-in-out infinite}
-@keyframes hudpulse{50%{box-shadow:0 0 0 4px rgba(236,72,153,.28)}}
+.hud .x{padding:7px 9px;color:#aaa}
+.hud button.snd{display:flex;align-items:center;gap:6px;padding:6px 8px}
+.hud button.snd.off{color:#8a8a8a}
+.hud button.snd.tap{background:#0D99FF;animation:hudpulse 1.6s ease-in-out infinite}
+@keyframes hudpulse{50%{box-shadow:0 0 0 4px rgba(13,153,255,.28)}}
 .hud.hidden{opacity:0 !important;transform:translate(-50%,24px) !important;pointer-events:none !important}
-.hud-unhide{all:unset;position:absolute;left:50%;bottom:16px;transform:translate(-50%,14px);opacity:0;pointer-events:none;padding:6px 12px;background:rgba(255,228,240,.88);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);color:#6b1d40;border:1px solid rgba(244,114,182,.42);border-radius:10px;box-shadow:0 6px 20px rgba(236,72,153,.16);font:600 11px/1 "Be Vietnam Pro",system-ui,-apple-system,sans-serif;cursor:pointer;transition:opacity .3s ease,transform .3s ease,background .15s,color .15s;z-index:6;user-select:none;box-sizing:border-box}
-.hud-unhide:hover{background:#fff;color:#db2777}
-.hud-unhide.visible{opacity:1;transform:translate(-50%,0);pointer-events:auto}
+.hud-unhide{all:unset;position:absolute;left:50%;bottom:16px;transform:translate(-50%,14px);opacity:0;pointer-events:none;padding:6px 12px;background:rgba(30,30,30,.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:#cfcfcf;border-radius:8px;box-shadow:0 6px 20px rgba(0,0,0,.25),inset 0 0 0 1px rgba(255,255,255,.07);font:500 11px/1 Inter,system-ui,-apple-system,sans-serif;cursor:pointer;transition:opacity .3s ease,transform .3s ease,background .15s,color .15s;z-index:6;user-select:none;box-sizing:border-box}
+.hud-unhide:hover{background:#3a3a3a;color:#fff}
+.hud,.hud-unhide{display:none!important;opacity:0!important;visibility:hidden!important;pointer-events:none!important}
 `;
 
   // -------------------------------------------------------------------- env
@@ -3083,7 +3083,7 @@
   const PENTA = [0, 2, 4, 7, 9]; // E F# G# B C#
   const E2 = 40;
   const mtof = (m) => 440 * Math.pow(2, (m - 69) / 12);
-  let soundPref = true;
+  let soundPref = false;
   const SPK_ICON = '<svg viewBox="0 0 16 16" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6v4h2.5l3.5 3V3L5 6z" fill="currentColor"/>';
 
   class Sound {
@@ -3485,14 +3485,16 @@
     constructor() {
       this.dead = false;
       this.t0 = performance.now();
-      this.tour = false;
+      this.tour = true;
       this.tourV = 0;
       this.tourAcc = 0;
+      this.tourDelay = 1.15;
+      this.manualPauseUntil = 0;
       this.speeds = [1, 2, 3];
       this.speedIx = 0;
       this.complete = false;
       this.timing = {};
-      this.hudHidden = false;
+      this.hudHidden = true;
     }
 
     setHudHidden(hidden) {
@@ -3530,24 +3532,22 @@
     }
 
     async run() {
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
       this.env = detectEnv();
+      this.env.scrollTo(0, 0);
       const shotP = this.loadShot();
       this.view = new View(this.env);
       this.engine = new Engine(this.view);
-      this.sfx = new Sound();
-      this.sfx.init();
-      this.engine.sfx = this.sfx;
+      this.sfx = null;
+      this.engine.sfx = null;
       this.engine.onStart = () => this.view.intro.classList.add("gone");
       this.engine.onComplete = () => this.onComplete();
       this.bind();
       this.last = performance.now();
       this.raf = requestAnimationFrame((t) => this.frame(t));
       await nextFrame();
-      this.renderSoundBtn();
-      this.sfx.intro();
       this.view.bg.classList.add("on");
       this.view.intro.classList.add("on");
-      this.view.hud.classList.add("on");
       const mark = (k) => (this.timing[k] = Math.round(performance.now() - this.t0));
       await sleep(520);
       await unhidePage();
@@ -3582,6 +3582,9 @@
       const wait = 1500 - (performance.now() - this.t0);
       if (wait > 0) await sleep(wait);
       if (this.dead) return;
+      this.env.scrollTo(0, 0);
+      this.view.measure();
+      this.view.syncWorld();
       this.engine.start();
     }
 
@@ -3616,6 +3619,10 @@
       on(window, "resize", () => this.view.measure());
       on(window, "wheel", () => {
         if (this.engine.ready) this.engine.start();
+        this.manualPauseUntil = performance.now() + 1800;
+      }, { passive: true });
+      on(window, "touchmove", () => {
+        this.manualPauseUntil = performance.now() + 1800;
       }, { passive: true });
       on(window, "pointermove", (e) => {
         this.engine.mouse = { x: e.clientX, y: e.clientY };
@@ -3635,23 +3642,8 @@
         if (e.key === "Escape") {
           e.stopPropagation();
           stop(false);
-        } else if ((e.key === "m" || e.key === "M") && !e.metaKey && !e.ctrlKey && !e.altKey) {
-          // ours while the swarm covers the page: don't also type into a field the page had focused
-          e.preventDefault();
-          e.stopPropagation();
-          if (!e.repeat) {
-            this.sfx.setOn(!this.sfx.on);
-            this.renderSoundBtn();
-          }
-        } else if ((e.key === "h" || e.key === "H") && !e.metaKey && !e.ctrlKey && !e.altKey) {
-          e.preventDefault();
-          e.stopPropagation();
-          if (!e.repeat) this.toggleHud(); // holding H mustn't flicker it
         }
-        this.unlockSound();
       }, true);
-      // browsers only let audio start after a click/keypress on the page
-      on(window, "pointerdown", () => this.unlockSound(), true);
       if (!this.env.isRoot) {
         on(this.view.host, "wheel", (e) => {
           e.preventDefault();
@@ -3729,6 +3721,14 @@
     tourStep(dt) {
       const E = this.engine;
       if (!E.started) return;
+      if (this.tourDelay > 0) {
+        this.tourDelay -= dt;
+        return;
+      }
+      if (performance.now() < this.manualPauseUntil) {
+        this.tourV = 0;
+        return;
+      }
       const g = this.env.geom();
       const maxY = this.env.scrollHeight() - g.vh;
       if (g.sy >= maxY - 1) {
@@ -3737,8 +3737,8 @@
       }
       const crew = Math.max(MIN_AGENTS, E.cursors.filter((c) => !c.leaving).length);
       const backlog = E.backlog();
-      const target = backlog <= Math.max(4, crew * 0.6) ? 230 : backlog <= crew * 1.5 ? 80 : 0;
-      this.tourV += (target - this.tourV) * Math.min(1, dt * 2.5);
+      const target = backlog <= Math.max(5, crew * 0.65) ? 160 : backlog <= crew * 1.6 ? 78 : 28;
+      this.tourV += (target - this.tourV) * Math.min(1, dt * 2.2);
       this.tourAcc += this.tourV * dt;
       if (this.tourAcc >= 1) {
         const d = Math.floor(this.tourAcc);
@@ -3774,20 +3774,10 @@
 
     onComplete() {
       this.complete = true;
-      // a hidden toolbar stays hidden so the end of a recording stays clean (H or the bottom edge brings it back)
-      if (this.sfx) this.sfx.finale();
-      const E = this.engine;
-      const v = this.view;
-      const workers = E.cursors.filter((c) => c.worked).length + E.retired;
-      const secs = (E.endTime - E.startTime).toFixed(1);
-      v.status.innerHTML = `Rebuilt by <b>${workers}</b> agents in <b>${secs}s</b>`;
-      v.barFill.style.width = "100%";
-      v.dots.innerHTML = "";
-      v.root.querySelector('[data-a="live"]').hidden = false;
-      v.root.querySelector('[data-a="replay"]').hidden = false;
-      v.root.querySelector('[data-a="tour"]').hidden = true;
-      v.root.querySelector('[data-a="speed"]').hidden = true;
       this.tour = false;
+      setTimeout(() => {
+        if (!this.dead && app === this) stop(true);
+      }, 650);
     }
 
     destroy(reveal) {
@@ -3891,15 +3881,24 @@
   window[KEY] = {
     toggle() {
       if (app) stop(false);
-      else start();
+      else {
+        window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+        start();
+      }
     },
-    start,
+    start() {
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+      start();
+    },
     stop,
-    restart,
+    restart() {
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+      restart();
+    },
     get app() {
       return app;
     },
-    debug: { captureModel, detectEnv, Sound },
+    debug: { captureModel, detectEnv },
   };
 
   window.addEventListener("keydown", (e) => {
@@ -3910,9 +3909,11 @@
   });
 
   const autoBoot = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
     const launch = () => setTimeout(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
       if (!app) start();
-    }, 180);
+    }, 150);
     if (document.fonts && document.fonts.ready) {
       Promise.race([document.fonts.ready, sleep(1500)]).then(launch);
     } else {
