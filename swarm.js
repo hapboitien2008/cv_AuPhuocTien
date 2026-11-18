@@ -210,7 +210,7 @@
     "border-right-style", "border-bottom-style", "border-left-style", "border-top-color",
     "border-right-color", "border-bottom-color", "border-left-color",
     "border-top-left-radius", "border-top-right-radius", "border-bottom-right-radius",
-    "border-bottom-left-radius", "box-shadow", "-webkit-backdrop-filter", "backdrop-filter", "filter", "clip-path",
+    "border-bottom-left-radius", "box-shadow", "filter", "clip-path",
     "-webkit-mask-image", "-webkit-mask-size", "-webkit-mask-position", "-webkit-mask-repeat",
   ];
 
@@ -1024,7 +1024,7 @@
     function walk(el, ctx, parent) {
       if (items.length >= MAX_ITEMS) return;
       const tag = el.localName;
-      if (SKIP.has(tag) || el === env.host) return;
+      if (SKIP.has(tag) || el === env.host || (el.hasAttribute && el.hasAttribute("data-swarm-skip"))) return;
       const cs = css(el);
       const disp = cs.display;
       if (disp === "none") return;
@@ -1233,8 +1233,12 @@
       for (const k of node.kids) {
         const n = k.end - k.start;
         if (n < 1 || n > 48) continue;
-        // long single paragraphs read better typed than duplicated
-        if (n === 1 && items[k.start].kind === "text" && items[k.start].text.length > 40) continue;
+        // build cards containing long paragraphs in parallel instead of waiting behind master
+        let hasLong = false;
+        for (let i = k.start; i < k.end; i++) {
+          if (items[i].kind === "text" && items[i].text.length > 55) { hasLong = true; break; }
+        }
+        if (hasLong) continue;
         const sig = `${k.tag}|${k.cls}|${k.layer}|${kindsSig(k)}`;
         if (!buckets.has(sig)) buckets.set(sig, []);
         buckets.get(sig).push(k);
@@ -2580,7 +2584,7 @@
 
     *type(it, c) {
       const N = it.total;
-      const k = clamp(70 / Math.max(1, N), 0.06, 1);
+      const k = clamp(105 / Math.max(1, N), 0.14, 1);
       let budget = 0;
       let i = it.shown;
       while (i < N) {
@@ -3219,8 +3223,8 @@
       }
       const crew = Math.max(MIN_AGENTS, E.cursors.filter((c) => !c.leaving).length);
       const backlog = E.backlog();
-      const target = backlog <= Math.max(8, crew * 0.75) ? 210 : backlog <= crew * 1.8 ? 105 : 35;
-      this.tourV += (target - this.tourV) * Math.min(1, dt * 2.5);
+      const target = backlog <= Math.max(18, crew * 1.2) ? 205 : backlog <= crew * 2.4 ? 155 : 120;
+      this.tourV += (target - this.tourV) * Math.min(1, dt * 1.8);
       this.tourAcc += this.tourV * dt;
       if (this.tourAcc >= 1) {
         const d = Math.floor(this.tourAcc);

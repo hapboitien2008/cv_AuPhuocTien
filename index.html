@@ -24,16 +24,27 @@
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="stylesheet" href="style.css?v=2026111809">
+  <link rel="stylesheet" href="style.css?v=2026111810">
 </head>
 <body>
   <!-- Frosted Pink Glass Navigation Bar -->
   <nav class="navbar">
     <div class="nav-container">
-      <a href="#hero" class="nav-brand">
-        <span class="brand-code">&lt;APT /&gt;</span>
-        <span class="brand-name">Âu Phước Tiến</span>
-      </a>
+      <div class="nav-brand-wrap">
+        <button type="button" id="menuToggleBtn" class="brand-code" aria-expanded="false" aria-haspopup="true" title="Mở Menu điều hướng nhanh">Menu</button>
+        <a href="#hero" class="brand-name">Âu Phước Tiến</a>
+        <div id="quickMenuDropdown" class="quick-menu glass-panel" data-swarm-skip="true" hidden>
+          <a href="#hero"><i class="fa-solid fa-house"></i> Trang chủ</a>
+          <a href="#about"><i class="fa-solid fa-user"></i> Giới thiệu</a>
+          <a href="#education"><i class="fa-solid fa-graduation-cap"></i> Học vấn (THPT &amp; VLU)</a>
+          <a href="#courses"><i class="fa-solid fa-laptop-code"></i> Các môn CNTT</a>
+          <a href="#skills"><i class="fa-solid fa-code"></i> Kỹ năng</a>
+          <a href="https://zalo.me/0779770946" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-comment-dots"></i> Zalo: 0779770946</a>
+          <div class="menu-divider"></div>
+          <button type="button" id="menuSwarmBtn"><i class="fa-solid fa-wand-magic-sparkles"></i> Phát lại Swarm Cursors</button>
+          <button type="button" id="menuMusicBtn"><i class="fa-solid fa-music"></i> Bật / Tắt Nhạc nền</button>
+        </div>
+      </div>
       <ul class="nav-menu">
         <li><a href="#about"><i class="fa-solid fa-user"></i> Giới thiệu</a></li>
         <li><a href="#education"><i class="fa-solid fa-graduation-cap"></i> Học vấn</a></li>
@@ -41,6 +52,10 @@
         <li><a href="#skills"><i class="fa-solid fa-code"></i> Kỹ năng</a></li>
       </ul>
       <div class="nav-actions">
+        <button id="musicNavBtn" class="btn-music" title="Nhạc nền Spotify: Vì Anh Quá Đẹp Trai (Tự dừng khi sang tab khác)">
+          <i class="fa-solid fa-music"></i>
+          <span>Nhạc nền</span>
+        </button>
         <button id="swarmTriggerBtn" class="btn-swarm" title="Kích hoạt hiệu ứng Swarm Cursors xây dựng lại trang web (Alt + Shift + S)">
           <i class="fa-solid fa-arrow-pointer"></i>
           <span>Swarm Cursors</span>
@@ -113,7 +128,7 @@
             <span class="w-dot dot-3"></span>
           </div>
           <div class="profile-avatar-box" style="width:140px;height:140px;margin:0 auto 1.15rem;border-radius:50%;">
-            <img src="assets/avatar_tien.jpg?v=2026111808" width="132" height="132" alt="Ảnh đại diện Âu Phước Tiến" class="avatar-img" style="width:100%;height:100%;max-width:132px;max-height:132px;border-radius:50%;object-fit:cover;object-position:center 8%;display:block;" onclick="openLightbox(this.src, 'Âu Phước Tiến — Sinh viên Khoa Công nghệ Thông tin (VLU)')">
+            <img src="assets/avatar_tien.jpg?v=2026111810" width="132" height="132" alt="Ảnh đại diện Âu Phước Tiến" class="avatar-img" style="width:100%;height:100%;max-width:132px;max-height:132px;border-radius:50%;object-fit:cover;object-position:center 8%;display:block;" onclick="openLightbox(this.src, 'Âu Phước Tiến — Sinh viên Khoa Công nghệ Thông tin (VLU)')">
             <div class="status-indicator" title="Sẵn sàng học hỏi & kết nối">
               <i class="fa-solid fa-check"></i>
             </div>
@@ -548,8 +563,31 @@
     <div id="lightboxCaption" class="lightbox-caption"></div>
   </div>
 
+  <!-- Frosted Pink Spotify Background Music Player (Vì Anh Quá Đẹp Trai) -->
+  <div id="spotifyDock" class="spotify-dock glass-panel" data-swarm-skip="true">
+    <div class="spotify-dock-head">
+      <div class="spotify-dock-title">
+        <span class="music-eq" id="musicEq" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span>Vì Anh Quá Đẹp Trai</span>
+      </div>
+      <div class="spotify-dock-actions">
+        <button type="button" id="musicPlayPauseBtn" class="dock-btn" title="Phát / Tạm dừng nhạc">
+          <i class="fa-solid fa-play"></i>
+        </button>
+        <button type="button" id="musicDockToggle" class="dock-btn" title="Thu gọn / Mở rộng trình phát Spotify">
+          <i class="fa-solid fa-chevron-down"></i>
+        </button>
+      </div>
+    </div>
+    <div id="spotifyEmbedWrap" class="spotify-embed-wrap">
+      <div id="spotify-embed"></div>
+    </div>
+  </div>
+
+  <!-- Spotify Official Embed IFrame API -->
+  <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
   <!-- Swarm Cursors Engine (https://github.com/DhvanilPatel/swarm-cursors) -->
-  <script src="swarm.js?v=2026111809"></script>
-  <script src="script.js?v=2026111809"></script>
+  <script src="swarm.js?v=2026111810"></script>
+  <script src="script.js?v=2026111810"></script>
 </body>
 </html>
