@@ -38,10 +38,10 @@
   const BLUE = "#EC4899";
   const RED = "#F43F5E";
   const RULER = 20;
-  const MIN_AGENTS = 16;
-  const MAX_AGENTS = 48;
-  const FLOCK_AGENTS = 36;
-  const INTRO_AGENTS = 18;
+  const MIN_AGENTS = 24;
+  const MAX_AGENTS = 64;
+  const FLOCK_AGENTS = 52;
+  const INTRO_AGENTS = 28;
   const MAX_ITEMS = 4000;
   const MAX_WORLD_H = 40000;
   const SVGNS = "http://www.w3.org/2000/svg";
@@ -2421,6 +2421,15 @@
         }
         return;
       }
+      if (this.view && this.view.liveFlock) {
+        const sy = this.vp.sy;
+        if (this._flockSy != null && sy !== this._flockSy) {
+          const dy = (sy - this._flockSy) * 0.88;
+          for (const c of this.cursors) c.y += dy;
+          if (this.lastT) this.lastT.y += dy;
+        }
+        this._flockSy = sy;
+      }
       this.follow(dt, this.cursors);
     }
 
@@ -3160,7 +3169,7 @@
         this.engine.mouse = null;
       });
       on(window, "keydown", (e) => {
-        if (e.key === "Escape") {
+        if (e.key === "Escape" && !this.complete) {
           e.stopPropagation();
           stop(false);
         }
@@ -3180,7 +3189,11 @@
       try {
         this.engine.step(dt);
         if (this.tour) this.tourStep(dt);
-        this.view.render(this.engine);
+        if (this.view.liveFlock) {
+          this.view.renderCursors(this.engine);
+        } else {
+          this.view.render(this.engine);
+        }
       } catch (err) {
         console.error("[swarm-rebuild]", err);
       }
@@ -3219,9 +3232,26 @@
     onComplete() {
       this.complete = true;
       this.tour = false;
+      unhidePage();
+      // Let all cursors keep orbiting around the user's pointer over the real live page!
+      this.engine.releasing = false;
+      this.engine.flocking = true;
+      this.engine.items = null;
+      this.view.liveFlock = true;
+      this.view.host.style.setProperty("pointer-events", "none", "important");
+      const v = this.view;
+      const layers = [v.bg, v.under, v.port, v.over, v.ov, v.badges, v.rulers, v.intro];
+      for (const el of layers) {
+        if (!el) continue;
+        el.style.transition = "opacity .45s ease";
+        el.style.opacity = "0";
+      }
       setTimeout(() => {
-        if (!this.dead && app === this) stop(true);
-      }, 650);
+        if (this.dead) return;
+        for (const el of layers) {
+          if (el && el.parentNode) el.remove();
+        }
+      }, 480);
     }
 
     destroy(reveal) {
