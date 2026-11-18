@@ -1,8 +1,8 @@
 /*
- * Swarm Cursors / Swarm Rebuild (Silent Auto-Tour Edition)
+ * Swarm Cursors / Swarm Rebuild (Silent Clean Auto-Tour Edition v2)
  * Source: https://github.com/DhvanilPatel/swarm-cursors by Dhvanil Patel
  * Tribute to Swarm by Joel Califa (https://joelcalifa.com)
- * Adapted for Au Phuoc Tien Online CV (Pink & White + Silent + Auto-Scroll Top-to-Bottom)
+ * Adapted for Au Phuoc Tien Online CV (Pink & White + No HUD + No Sound + Top-to-Bottom Auto-Scroll)
  */
 /*
  * Swarm Rebuild
@@ -1532,30 +1532,6 @@
 .intro.gone{opacity:0;transform:translate(-50%,-50%) scale(.9)}
 .intro img{display:block;width:64px;height:64px;object-fit:contain;opacity:.88;border-radius:16px;box-shadow:0 10px 28px rgba(236,72,153,.2)}
 .intro .mono{width:64px;height:64px;border-radius:18px;background:linear-gradient(135deg,#f472b6,#ec4899);color:#fff;font:700 28px/64px "Be Vietnam Pro",system-ui,sans-serif;text-align:center;box-shadow:0 10px 28px rgba(236,72,153,.25)}
-.hud{position:absolute;left:50%;bottom:20px;transform:translate(-50%,18px);opacity:0;display:flex;align-items:center;gap:10px;padding:6px 6px 6px 10px;background:rgba(30,30,30,.94);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);color:#fff;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.28),inset 0 0 0 1px rgba(255,255,255,.07);font:500 12px/1 Inter,system-ui,-apple-system,"Segoe UI",sans-serif;pointer-events:auto;transition:opacity .45s ease,transform .45s cubic-bezier(.2,.8,.2,1);white-space:nowrap;user-select:none;z-index:5}
-.hud.on{opacity:1;transform:translate(-50%,0)}
-.hud .dots{display:flex;padding-left:5px}
-.hud .dots i{display:block;width:18px;height:18px;margin-left:-5px;border-radius:50%;border:2px solid #1e1e1e;font:700 9px/14px Inter,system-ui,sans-serif;font-style:normal;text-align:center;color:#fff;transition:background .3s}
-.hud .txt,.hud .status{display:flex;align-items:center;gap:7px;color:#cfcfcf;font-variant-numeric:tabular-nums}
-.hud .txt b{color:#fff;font-weight:600}
-.hud .sep{width:1px;height:12px;background:#444}
-.hud .bar{width:64px;height:3px;border-radius:2px;background:#3a3a3a;overflow:hidden}
-.hud .bar i{display:block;height:100%;width:0;background:#0D99FF;transition:width .35s ease}
-.hud button{all:unset;cursor:pointer;padding:7px 10px;border-radius:8px;background:#2c2c2c;color:#fff;font:500 12px/1 Inter,system-ui,-apple-system,sans-serif;transition:background .15s}
-.hud button:hover{background:#3a3a3a}
-.hud button.pri{background:#0D99FF}
-.hud button.pri:hover{background:#2aa6ff}
-.hud button.on{background:rgba(13,153,255,.22);color:#8fd0ff}
-.hud button[hidden]{display:none}
-.hud .x{padding:7px 9px;color:#aaa}
-.hud button.snd{display:flex;align-items:center;gap:6px;padding:6px 8px}
-.hud button.snd.off{color:#8a8a8a}
-.hud button.snd.tap{background:#0D99FF;animation:hudpulse 1.6s ease-in-out infinite}
-@keyframes hudpulse{50%{box-shadow:0 0 0 4px rgba(13,153,255,.28)}}
-.hud.hidden{opacity:0 !important;transform:translate(-50%,24px) !important;pointer-events:none !important}
-.hud-unhide{all:unset;position:absolute;left:50%;bottom:16px;transform:translate(-50%,14px);opacity:0;pointer-events:none;padding:6px 12px;background:rgba(30,30,30,.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:#cfcfcf;border-radius:8px;box-shadow:0 6px 20px rgba(0,0,0,.25),inset 0 0 0 1px rgba(255,255,255,.07);font:500 11px/1 Inter,system-ui,-apple-system,sans-serif;cursor:pointer;transition:opacity .3s ease,transform .3s ease,background .15s,color .15s;z-index:6;user-select:none;box-sizing:border-box}
-.hud-unhide:hover{background:#3a3a3a;color:#fff}
-.hud,.hud-unhide{display:none!important;opacity:0!important;visibility:hidden!important;pointer-events:none!important}
 `;
 
   // -------------------------------------------------------------------- env
@@ -1655,20 +1631,7 @@
 <svg class="ov"></svg>
 <div class="badges"></div>
 <div class="cursors"></div>
-<div class="rulers"></div>
-<div class="hud">
-  <div class="dots"></div>
-  <div class="txt"><span class="status">Scanning page…</span></div>
-  <div class="bar"><i></i></div>
-  <button data-a="tour" title="Auto-scroll while the swarm builds">Tour</button>
-  <button data-a="speed" title="Build speed">1×</button>
-  <button data-a="sound" class="snd" title="Sound (M)"></button>
-  <button data-a="hide" title="Hide controls for recording (H)">Hide</button>
-  <button data-a="live" class="pri" hidden title="Fade back to the real page">Go live</button>
-  <button data-a="replay" hidden title="Wipe and rebuild again">Replay</button>
-  <button data-a="close" class="x" title="Exit (Esc)">✕</button>
-</div>
-<button class="hud-unhide" title="Show controls (H)">Show controls</button>`;
+<div class="rulers"></div>`;
       const $ = (s) => root.querySelector(s);
       this.bg = $(".bg");
       this.under = $(".under");
@@ -1680,11 +1643,6 @@
       this.badges = $(".badges");
       this.cursorsEl = $(".cursors");
       this.rulers = $(".rulers");
-      this.hud = $(".hud");
-      this.unhideBtn = $(".hud-unhide");
-      this.status = $(".status");
-      this.barFill = $(".bar i");
-      this.dots = $(".dots");
       this.cursorEls = new Map();
       this._ovS = "";
       this._ovB = "";
@@ -3073,412 +3031,6 @@
     }
   }
 
-  // ------------------------------------------------------------------ sound
-
-  // A glass piano in E. Every finished piece of the page plays one note of the
-  // E major pentatonic, quantized to a soft 16th-note grid, so a busy swarm comes
-  // out as a generative melody: big sections low, small things high, pitch rising
-  // left to right, panned to where the cursor is. Typing and clicks are quiet
-  // paper ticks underneath. All synthesized; no audio files.
-  const PENTA = [0, 2, 4, 7, 9]; // E F# G# B C#
-  const E2 = 40;
-  const mtof = (m) => 440 * Math.pow(2, (m - 69) / 12);
-  let soundPref = false;
-  const SPK_ICON = '<svg viewBox="0 0 16 16" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6v4h2.5l3.5 3V3L5 6z" fill="currentColor"/>';
-
-  class Sound {
-    constructor() {
-      this.on = soundPref;
-      this.ctx = null;
-      this.bpm = 104;
-      this.slots = new Map();
-      this.lastKey = new Map();
-      this.keyTimes = [];
-      this.pressTimes = [];
-      this.ends = []; // when each sounding piano voice dies out
-      this.fakeNow = null; // offline renders drive the clock explicitly
-    }
-
-    init(offline) {
-      if (this.ctx) return true;
-      try {
-        const Ctx = window.AudioContext || window.webkitAudioContext;
-        this.ctx = offline || new Ctx({ latencyHint: "interactive" });
-      } catch (_) {
-        return false;
-      }
-      const ctx = this.ctx;
-      const out = ctx.createGain();
-      out.gain.value = this.on ? 1 : 0;
-      const comp = ctx.createDynamicsCompressor();
-      comp.threshold.value = -18;
-      comp.knee.value = 14;
-      comp.ratio.value = 5;
-      comp.attack.value = 0.003;
-      comp.release.value = 0.3;
-      const master = ctx.createGain();
-      master.gain.value = 0.9;
-      master.connect(comp);
-      comp.connect(out);
-      out.connect(ctx.destination);
-      const verb = ctx.createConvolver();
-      verb.buffer = this.impulse(3.2, 2.4);
-      const wet = ctx.createGain();
-      wet.gain.value = 0.5;
-      verb.connect(wet);
-      wet.connect(master);
-      this.out = out;
-      this.master = master;
-      this.verb = verb;
-      this.noiseBuf = this.noise(1.5);
-      this.t0 = this.now();
-      return true;
-    }
-
-    now() {
-      return this.fakeNow != null ? this.fakeNow : this.ctx.currentTime;
-    }
-
-    // Generated room: decaying stereo noise, darkened as it rings out.
-    impulse(secs, decay) {
-      const sr = this.ctx.sampleRate;
-      const n = Math.floor(sr * secs);
-      const b = this.ctx.createBuffer(2, n, sr);
-      for (let ch = 0; ch < 2; ch++) {
-        const d = b.getChannelData(ch);
-        let lp = 0;
-        for (let i = 0; i < n; i++) {
-          const k = i / n;
-          const a = 0.55 - 0.4 * k; // lowpass closes over time: warm tail
-          lp += a * (Math.random() * 2 - 1 - lp);
-          d[i] = lp * Math.pow(1 - k, decay) * (i < sr * 0.012 ? i / (sr * 0.012) : 1);
-        }
-      }
-      return b;
-    }
-
-    noise(secs) {
-      const sr = this.ctx.sampleRate;
-      const b = this.ctx.createBuffer(1, Math.floor(sr * secs), sr);
-      const d = b.getChannelData(0);
-      for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
-      return b;
-    }
-
-    setOn(on) {
-      this.on = soundPref = on;
-      if (!this.ctx) return;
-      const t = this.ctx.currentTime;
-      this.out.gain.cancelScheduledValues(t);
-      this.out.gain.setTargetAtTime(on ? 1 : 0, t, 0.05);
-      if (on) this.resume();
-    }
-
-    resume() {
-      if (this.ctx && this.ctx.state === "suspended" && this.ctx.resume) this.ctx.resume().catch(() => {});
-    }
-
-    get blocked() {
-      return !!this.ctx && this.ctx.state !== "running" && this.fakeNow == null;
-    }
-
-    log(fn, args) {
-      if (Array.isArray(window.__swarmSfxLog)) window.__swarmSfxLog.push({ t: performance.now() / 1000, fn, args });
-    }
-
-    ready() {
-      return this.ctx && this.on && (this.fakeNow != null || this.ctx.state === "running");
-    }
-
-    // next 16th-note on the grid (or 8th for slow, low events)
-    grid(div = 4) {
-      const step = 60 / this.bpm / div;
-      const now = this.now() + 0.015;
-      const k = Math.ceil((now - this.t0) / step);
-      return { when: this.t0 + k * step, slot: `${div}:${k}` };
-    }
-
-    pan(x, vw) {
-      return clamp((x / Math.max(1, vw)) * 1.6 - 0.8, -0.8, 0.8);
-    }
-
-    bus(when, pan, send) {
-      const g = this.ctx.createGain();
-      const p = this.ctx.createStereoPanner();
-      p.pan.setValueAtTime(pan, when);
-      g.connect(p);
-      p.connect(this.master);
-      if (send) {
-        const s = this.ctx.createGain();
-        s.gain.value = send;
-        p.connect(s);
-        s.connect(this.verb);
-      }
-      return g;
-    }
-
-    // Glass piano: a few sine partials (one inharmonic, for the glass) with a
-    // soft felt-hammer tick, long exponential ring.
-    piano(midi, when, vel, pan, ring = 2.4) {
-      const now = this.now();
-      this.ends = this.ends.filter((e) => e > now);
-      if (this.ends.length >= 28) return;
-      const ctx = this.ctx;
-      const f = mtof(midi);
-      const v = this.bus(when, pan, 0.85);
-      v.gain.value = 0.3 * vel;
-      const hi = f > 900;
-      const parts = [
-        [1, 1, 1],
-        [2, 0.38, 0.55],
-        [3, 0.12, 0.32],
-        [2.756, 0.16, 0.42],
-        [5.4, 0.05, 0.16],
-      ];
-      let last = null;
-      for (const [r, a, d] of parts) {
-        if (f * r > 15000) continue;
-        const o = ctx.createOscillator();
-        o.type = "sine";
-        o.frequency.value = f * r * (1 + (Math.random() - 0.5) * 0.002);
-        const g = ctx.createGain();
-        const dec = ring * d * (hi ? 0.65 : 1);
-        g.gain.setValueAtTime(0, when);
-        g.gain.linearRampToValueAtTime(a, when + 0.005);
-        g.gain.exponentialRampToValueAtTime(0.0006, when + dec);
-        o.connect(g);
-        g.connect(v);
-        o.start(when);
-        o.stop(when + dec + 0.05);
-        last = o;
-      }
-      this.hammer(when, v, f, 0.5);
-      this.ends.push(when + ring * (hi ? 0.65 : 1));
-      if (last) last.onended = () => v.disconnect();
-    }
-
-    hammer(when, dest, f, amt) {
-      const ctx = this.ctx;
-      const src = ctx.createBufferSource();
-      src.buffer = this.noiseBuf;
-      const bp = ctx.createBiquadFilter();
-      bp.type = "bandpass";
-      bp.frequency.value = Math.min(9000, f * 4 + 1200);
-      bp.Q.value = 1.2;
-      const g = ctx.createGain();
-      g.gain.setValueAtTime(0, when);
-      g.gain.linearRampToValueAtTime(0.25 * amt, when + 0.001);
-      g.gain.exponentialRampToValueAtTime(0.0005, when + 0.03);
-      src.connect(bp);
-      bp.connect(g);
-      g.connect(dest);
-      src.start(when, Math.random());
-      src.stop(when + 0.05);
-    }
-
-    // short filtered-noise ticks: typing and clicks
-    tick(when, pan, freq, q, vel, len) {
-      const ctx = this.ctx;
-      const src = ctx.createBufferSource();
-      src.buffer = this.noiseBuf;
-      const bp = ctx.createBiquadFilter();
-      bp.type = "bandpass";
-      bp.frequency.value = freq;
-      bp.Q.value = q;
-      const g = this.bus(when, pan, 0.06);
-      g.gain.setValueAtTime(0, when);
-      g.gain.linearRampToValueAtTime(vel, when + 0.0008);
-      g.gain.exponentialRampToValueAtTime(0.0004, when + len);
-      src.connect(bp);
-      bp.connect(g);
-      src.start(when, Math.random() * 1.2);
-      src.stop(when + len + 0.02);
-      src.onended = () => g.disconnect();
-    }
-
-    // ---- events (screen coords in; all plain numbers so a log can be replayed)
-
-    // one mechanical key: a sharp click on top of a short "thock" (deeper for space)
-    clack(when, pan, space, vel = 1) {
-      this.tick(when, pan, rand(3600, 5600), 2.2, rand(0.2, 0.3) * vel, rand(0.006, 0.011));
-      this.tick(when + rand(0.001, 0.005), pan, space ? rand(380, 560) : rand(850, 1500), 1.6, (space ? 0.26 : rand(0.13, 0.2)) * vel, space ? 0.065 : rand(0.025, 0.042));
-    }
-
-    key(x, vw, id, n = 1, space = 0) {
-      this.log("key", [x, vw, id, n, space]);
-      if (!this.ready()) return;
-      const t = this.now();
-      if (t - (this.lastKey.get(id) || -1) < 0.024) return;
-      this.keyTimes = this.keyTimes.filter((k) => t - k < 1);
-      if (this.keyTimes.length > 80) return;
-      this.lastKey.set(id, t);
-      const pan = this.pan(x, vw);
-      // a burst of characters in one frame becomes a quick roll of keys
-      let at = t + 0.004;
-      for (let k = 0; k < Math.min(n, 3) && this.keyTimes.length <= 80; k++) {
-        this.keyTimes.push(t);
-        this.clack(at, pan, space && k === 0, rand(0.75, 1));
-        at += rand(0.018, 0.032);
-      }
-    }
-
-    // a mouse button: press click, then a lighter release
-    press(x, vw) {
-      this.log("press", [x, vw]);
-      if (!this.ready()) return;
-      const t = this.now();
-      this.pressTimes = this.pressTimes.filter((k) => t - k < 1);
-      if (this.pressTimes.length > 40) return;
-      this.pressTimes.push(t);
-      const pan = this.pan(x, vw);
-      this.tick(t + 0.004, pan, rand(2100, 2700), 4, 0.32, 0.012);
-      this.tick(t + 0.005, pan, rand(650, 850), 2, 0.16, 0.022);
-      this.tick(t + rand(0.055, 0.075), pan, rand(2900, 3400), 4, 0.15, 0.008);
-    }
-
-    // a finished element: rect, image, text, line, dup, guide, edit, restyle
-    place(kind, x, y, w, h, vw, vh, fs) {
-      this.log("place", [kind, x, y, w, h, vw, vh, fs]);
-      if (!this.ready()) return;
-      // only boxes, media, duplicates and guides sing; text and lines stay percussive
-      if (kind === "text" || kind === "edit" || kind === "line") return;
-      const area = (w * h) / Math.max(1, vw * vh);
-      let oct;
-      if (kind === "text") oct = fs >= 40 ? 2 : fs >= 22 ? 3 : 4;
-      else if (kind === "guide") oct = 5;
-      else oct = area > 0.08 ? 1 : area > 0.015 ? 2 : area > 0.002 ? 3 : 4;
-      const deg = Math.floor(clamp(x / Math.max(1, vw), 0, 0.999) * 5);
-      const midi = E2 + oct * 12 + PENTA[deg];
-      const { when, slot } = this.grid(2);
-      const seen = this.slots.get(slot) || [];
-      if (seen.length >= 1) return;
-      seen.push(midi);
-      this.slots.set(slot, seen);
-      if (this.slots.size > 64) this.slots.delete(this.slots.keys().next().value);
-      const off = y < -40 || y > vh + 40 ? 0.45 : 1;
-      const pan = this.pan(x, vw);
-      const vel = ({ rect: 0.55, image: 0.5, dup: 0.5, guide: 0.3, restyle: 0.34 }[kind] || 0.4) * 0.42;
-      const ring = oct <= 1 ? 3.6 : oct >= 4 ? 1.6 : 2.4;
-      this.piano(midi, when, vel * off, pan, ring);
-      if (kind === "image") this.piano(midi + (PENTA[(deg + 2) % 5] - PENTA[deg] + 12) % 12, when + 0.04, vel * 0.6 * off, pan, ring);
-      if (kind === "dup") this.piano(E2 + 12 + (deg % 2 ? 7 : 0), when, 0.15 * off, pan * 0.5, 2.8);
-    }
-
-    // headings stepping up in size: a little rising run
-    grow(step, x, vw) {
-      this.log("grow", [step, x, vw]);
-      if (!this.ready()) return;
-      const t = this.now() + 0.004;
-      this.tick(t, this.pan(x, vw), 2400 + step * 260, 5, 0.12, 0.01);
-    }
-
-    snap(x, vw) {
-      this.log("snap", [x, vw]);
-      if (!this.ready()) return;
-      const t = this.now() + 0.004;
-      const pan = this.pan(x, vw);
-      this.tick(t, pan, 4800, 3, 0.36, 0.012);
-      this.tick(t + 0.002, pan, 1200, 2, 0.2, 0.03);
-    }
-
-    // the page dissolving: an airy swell over a low open fifth
-    intro() {
-      this.log("intro", []);
-      if (!this.ready()) return;
-      const ctx = this.ctx;
-      const t = this.now() + 0.02;
-      const src = ctx.createBufferSource();
-      src.buffer = this.noiseBuf;
-      src.loop = true;
-      const bp = ctx.createBiquadFilter();
-      bp.type = "bandpass";
-      bp.Q.value = 0.8;
-      bp.frequency.setValueAtTime(260, t);
-      bp.frequency.exponentialRampToValueAtTime(2400, t + 0.9);
-      bp.frequency.exponentialRampToValueAtTime(900, t + 1.8);
-      const g = this.bus(t, 0, 0.6);
-      g.gain.setValueAtTime(0, t);
-      g.gain.linearRampToValueAtTime(0.16, t + 0.7);
-      g.gain.exponentialRampToValueAtTime(0.0005, t + 2.2);
-      src.connect(bp);
-      bp.connect(g);
-      src.start(t);
-      src.stop(t + 2.3);
-      src.onended = () => g.disconnect();
-      for (const [m, d] of [[E2, 0], [E2 + 7, 0.08], [E2 + 12, 0.16]]) this.pad(m, t + 0.3 + d, 0.07, 2.6);
-    }
-
-    pad(midi, when, vel, len) {
-      const ctx = this.ctx;
-      const g = this.bus(when, 0, 0.9);
-      g.gain.setValueAtTime(0, when);
-      g.gain.linearRampToValueAtTime(vel, when + len * 0.4);
-      g.gain.exponentialRampToValueAtTime(0.0005, when + len);
-      for (const det of [-4, 4]) {
-        const o = ctx.createOscillator();
-        o.type = "triangle";
-        o.frequency.value = mtof(midi);
-        o.detune.value = det;
-        o.connect(g);
-        o.start(when);
-        o.stop(when + len + 0.05);
-      }
-    }
-
-    // the swarm fans out: E G# B E arpeggio on the grid
-    start() {
-      this.log("start", []);
-      if (!this.ready()) return;
-      const { when } = this.grid(4);
-      const step = 60 / this.bpm / 4;
-      [E2 + 24, E2 + 28, E2 + 31, E2 + 36, E2 + 40].forEach((m, i) => this.piano(m, when + i * step, 0.2, -0.5 + i * 0.25, 2));
-    }
-
-    // the last chord rings: E major add9, strummed
-    finale() {
-      this.log("finale", []);
-      if (!this.ready()) return;
-      const { when } = this.grid(2);
-      const chord = [E2, E2 + 7, E2 + 12, E2 + 16, E2 + 19, E2 + 26, E2 + 28, E2 + 31, E2 + 36, E2 + 43];
-      chord.forEach((m, i) => this.piano(m, when + i * 0.035, 0.34 - i * 0.015, -0.6 + (i / chord.length) * 1.2, 5.5));
-      this.pad(E2 + 12, when, 0.05, 5);
-    }
-
-    // back to the real page: a falling sweep
-    release() {
-      this.log("release", []);
-      if (!this.ready()) return;
-      const ctx = this.ctx;
-      const t = this.now() + 0.01;
-      const src = ctx.createBufferSource();
-      src.buffer = this.noiseBuf;
-      src.loop = true;
-      const bp = ctx.createBiquadFilter();
-      bp.type = "bandpass";
-      bp.Q.value = 1;
-      bp.frequency.setValueAtTime(3000, t);
-      bp.frequency.exponentialRampToValueAtTime(220, t + 1);
-      const g = this.bus(t, 0, 0.5);
-      g.gain.setValueAtTime(0.12, t);
-      g.gain.exponentialRampToValueAtTime(0.0005, t + 1.1);
-      src.connect(bp);
-      bp.connect(g);
-      src.start(t);
-      src.stop(t + 1.2);
-      this.piano(E2 + 12, t + 0.05, 0.3, 0, 2.5);
-    }
-
-    close(after = 0) {
-      if (!this.ctx || this.fakeNow != null) return;
-      const ctx = this.ctx;
-      const t = ctx.currentTime;
-      this.out.gain.cancelScheduledValues(t);
-      this.out.gain.setValueAtTime(this.out.gain.value, t);
-      this.out.gain.linearRampToValueAtTime(0, t + Math.max(0.05, after));
-      setTimeout(() => ctx.close().catch(() => {}), (after + 0.2) * 1000);
-    }
-  }
-
   // -------------------------------------------------------------------- app
 
   class App {
@@ -3488,37 +3040,17 @@
       this.tour = true;
       this.tourV = 0;
       this.tourAcc = 0;
-      this.tourDelay = 1.15;
+      this.tourDelay = 2.6;
       this.manualPauseUntil = 0;
-      this.speeds = [1, 2, 3];
-      this.speedIx = 0;
       this.complete = false;
       this.timing = {};
-      this.hudHidden = true;
-    }
-
-    setHudHidden(hidden) {
-      this.hudHidden = hidden;
-      // see pointermove: not armed if the pointer is already in the bottom strip (e.g. it just clicked Hide)
-      const m = this.engine && this.engine.mouse;
-      this.pillArmed = !(m && m.y >= window.innerHeight - 44);
-      if (this.view) {
-        this.view.hud.classList.toggle("hidden", hidden);
-        if (this.view.unhideBtn) {
-          this.view.unhideBtn.classList.remove("visible");
-        }
-      }
-    }
-
-    toggleHud() {
-      this.setHudHidden(!this.hudHidden);
     }
 
     async loadShot() {
       let src = window.__swarmShot;
       window.__swarmShot = null;
       if (src) lastShot = { src, at: this.env.geom() };
-      else if (lastShot) src = lastShot.src; // Replay reuses the click-time screenshot
+      else if (lastShot) src = lastShot.src;
       if (!src) return null;
       const img = new Image();
       img.src = src;
@@ -3579,7 +3111,7 @@
       this.engine.setModel(model);
       this.model = model;
       mark("mount");
-      const wait = 1500 - (performance.now() - this.t0);
+      const wait = 1400 - (performance.now() - this.t0);
       if (wait > 0) await sleep(wait);
       if (this.dead) return;
       this.env.scrollTo(0, 0);
@@ -3600,10 +3132,10 @@
         await nextFrame();
         await sleep(30);
       }
-      env.scrollTo(g.sy, g.sx);
+      env.scrollTo(0, 0);
       await nextFrame();
       await sleep(750);
-      env.scrollTo(g.sy, g.sx);
+      env.scrollTo(0, 0);
       this.view.frozen = null;
     }
 
@@ -3626,17 +3158,9 @@
       }, { passive: true });
       on(window, "pointermove", (e) => {
         this.engine.mouse = { x: e.clientX, y: e.clientY };
-        if (this.hudHidden && this.view.unhideBtn) {
-          // The strip overlaps where the toolbar was, so wait until the pointer has left it once:
-          // otherwise clicking Hide puts "Show controls" right back under the cursor.
-          const nearBottom = e.clientY >= window.innerHeight - 44;
-          if (!nearBottom) this.pillArmed = true;
-          this.view.unhideBtn.classList.toggle("visible", nearBottom && this.pillArmed);
-        }
       }, { passive: true });
       on(document.documentElement, "pointerleave", () => {
         this.engine.mouse = null;
-        if (this.view.unhideBtn) this.view.unhideBtn.classList.remove("visible");
       });
       on(window, "keydown", (e) => {
         if (e.key === "Escape") {
@@ -3650,53 +3174,6 @@
           this.env.scroller.scrollBy({ top: e.deltaY, left: e.deltaX, behavior: "instant" });
         }, { passive: false });
       }
-      if (this.view.unhideBtn) {
-        on(this.view.unhideBtn, "click", () => this.setHudHidden(false));
-      }
-      on(this.view.hud, "click", (e) => {
-        const b = e.target.closest("button");
-        if (!b) return;
-        const a = b.dataset.a;
-        if (a === "close") stop(false);
-        else if (a === "live") stop(true);
-        else if (a === "replay") restart();
-        else if (a === "hide") this.setHudHidden(true);
-        else if (a === "tour") {
-          this.tour = !this.tour;
-          b.classList.toggle("on", this.tour);
-          b.textContent = this.tour ? "Touring" : "Tour";
-          if (this.tour) this.engine.start();
-        } else if (a === "sound") {
-          if (this.sfx.on && this.sfx.blocked) this.sfx.resume();
-          else this.sfx.setOn(!this.sfx.on);
-          setTimeout(() => this.renderSoundBtn(), 60);
-        } else if (a === "speed") {
-          this.speedIx = (this.speedIx + 1) % this.speeds.length;
-          this.engine.speed = this.speeds[this.speedIx];
-          b.textContent = this.speeds[this.speedIx] + "×";
-        }
-      });
-    }
-
-    unlockSound() {
-      if (this.dead || !this.sfx || !this.sfx.blocked) return;
-      this.sfx.resume();
-      setTimeout(() => this.renderSoundBtn(), 80);
-    }
-
-    renderSoundBtn() {
-      const b = this.view.root.querySelector('[data-a="sound"]');
-      if (!b || !this.sfx) return;
-      const tap = this.sfx.on && this.sfx.blocked;
-      const key = this.sfx.on ? (tap ? "tap" : "on") : "off";
-      if (b._k === key) return;
-      b._k = key;
-      b.classList.toggle("off", key === "off");
-      b.classList.toggle("tap", tap);
-      const waves = '<path d="M11 5.5a3.5 3.5 0 0 1 0 5M12.8 3.6a6 6 0 0 1 0 8.8"/>';
-      const mute = '<path d="M11 6l4 4M15 6l-4 4"/>';
-      b.innerHTML = `${SPK_ICON}${key === "off" ? mute : waves}</svg>${tap ? "<span>Tap for sound</span>" : ""}`;
-      b.title = key === "off" ? "Sound off (M)" : "Sound on (M)";
     }
 
     frame(now) {
@@ -3707,11 +3184,6 @@
         this.engine.step(dt);
         if (this.tour) this.tourStep(dt);
         this.view.render(this.engine);
-        if (!this._hudT || now - this._hudT > 200) {
-          this._hudT = now;
-          this.updateHud();
-          this.renderSoundBtn();
-        }
       } catch (err) {
         console.error("[swarm-rebuild]", err);
       }
@@ -3737,38 +3209,13 @@
       }
       const crew = Math.max(MIN_AGENTS, E.cursors.filter((c) => !c.leaving).length);
       const backlog = E.backlog();
-      const target = backlog <= Math.max(5, crew * 0.65) ? 160 : backlog <= crew * 1.6 ? 78 : 28;
-      this.tourV += (target - this.tourV) * Math.min(1, dt * 2.2);
+      const target = backlog <= Math.max(6, crew * 0.65) ? 140 : backlog <= crew * 1.6 ? 62 : 20;
+      this.tourV += (target - this.tourV) * Math.min(1, dt * 2.0);
       this.tourAcc += this.tourV * dt;
       if (this.tourAcc >= 1) {
         const d = Math.floor(this.tourAcc);
         this.tourAcc -= d;
         this.env.scrollBy(d);
-      }
-    }
-
-    updateHud() {
-      const E = this.engine;
-      const v = this.view;
-      if (!E.ready) return;
-      const workers = E.cursors.filter((c) => c.worked).length + E.retired;
-      const total = E.tasks.length;
-      const done = E.doneCount;
-      if (this.complete) return;
-      if (!E.started) v.status.innerHTML = `<b>${E.cursors.length}</b> agents ready<span class="sep"></span>${total.toLocaleString()} layers`;
-      else {
-        const pend = E.tasks.length - done;
-        const below = E.tasks.some((t) => t.state === "wait" && t.layer === "world" && t.gate > E.frontier);
-        v.status.innerHTML =
-          `<b>${workers}</b> agents<span class="sep"></span><b>${done.toLocaleString()}</b> / ${total.toLocaleString()} layers` +
-          (below && pend && !this.tour && E.backlog() === 0 ? `<span class="sep"></span>scroll to keep building` : "");
-      }
-      v.barFill.style.width = total ? `${(done / total) * 100}%` : "0%";
-      const busy = E.cursors.filter((c) => c.task).slice(-5);
-      const key = busy.map((c) => c.id).join(",");
-      if (key !== this._dots) {
-        this._dots = key;
-        v.dots.innerHTML = busy.map((c) => `<i style="background:${c.color}" title="${c.name}">${c.name[0]}</i>`).join("");
       }
     }
 
@@ -3782,12 +3229,7 @@
 
     destroy(reveal) {
       unhidePage();
-      if (this.sfx) {
-        if (reveal) this.sfx.release();
-        this.sfx.close(reveal ? 1.4 : 0.25);
-      }
       if (!this.view) {
-        // startup failed before the overlay existed
         this.dead = true;
         cancelAnimationFrame(this.raf);
         return;
@@ -3805,11 +3247,10 @@
           c.gen = null;
           c.follow = false;
         }
-        this.view.hud.classList.remove("on");
         setTimeout(() => {
           this.view.host.style.setProperty("opacity", "0", "important");
-        }, 450);
-        setTimeout(finish, 1150);
+        }, 400);
+        setTimeout(finish, 1050);
       } else {
         this.view.host.style.setProperty("transition", "opacity .25s ease", "important");
         this.view.host.style.setProperty("opacity", "0", "important");
@@ -3871,7 +3312,7 @@
       cancelAnimationFrame(a.raf);
       for (const u of a.unbinds || []) u();
       a.view.host.remove();
-      if (a.sfx) a.sfx.close(0.1);
+      
       // rebuild from where the first run started so screenshot crops line up again
       if (lastShot) a.env.scrollTo(lastShot.at.sy, lastShot.at.sx);
     }
@@ -3913,7 +3354,7 @@
     const launch = () => setTimeout(() => {
       window.scrollTo({ top: 0, left: 0, behavior: "instant" });
       if (!app) start();
-    }, 150);
+    }, 140);
     if (document.fonts && document.fonts.ready) {
       Promise.race([document.fonts.ready, sleep(1500)]).then(launch);
     } else {
