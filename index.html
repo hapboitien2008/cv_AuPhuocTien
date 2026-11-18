@@ -4,23 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lí Lịch Trực Tuyến - Âu Phước Tiến (71K32CNTT03)</title>
-  <!-- Google Fonts & Font Awesome Icons -->
+  <!-- Pink Sakura APT Favicon (also used by Swarm Cursors intro emblem) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23f9a8d4'/%3E%3Cstop offset='50%25' stop-color='%23f472b6'/%3E%3Cstop offset='100%25' stop-color='%23db2777'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='18' fill='url(%23g)'/%3E%3Ctext x='32' y='40' font-family='sans-serif' font-size='22' font-weight='800' fill='%23ffffff' text-anchor='middle'%3EAPT%3C/text%3E%3C/svg%3E">
+  <!-- Google Font: Be Vietnam Pro (for the entire website) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Background Glow & Particles Effect -->
-  <div class="ambient-glow glow-1"></div>
-  <div class="ambient-glow glow-2"></div>
-  <div class="ambient-glow glow-3"></div>
-
-  <!-- Navigation Bar -->
+  <!-- Frosted Pink Glass Navigation Bar -->
   <nav class="navbar">
     <div class="nav-container">
-      <a href="#" class="nav-brand">
+      <a href="#hero" class="nav-brand">
         <span class="brand-code">&lt;APT /&gt;</span>
         <span class="brand-name">Âu Phước Tiến</span>
       </a>
@@ -31,8 +29,9 @@
         <li><a href="#skills"><i class="fa-solid fa-code"></i> Kỹ năng</a></li>
       </ul>
       <div class="nav-actions">
-        <button id="themeToggle" class="theme-btn" title="Chuyển chế độ sáng/tối">
-          <i class="fa-solid fa-moon"></i>
+        <button id="swarmTriggerBtn" class="btn-swarm" title="Kích hoạt hiệu ứng Swarm Cursors xây dựng lại trang web (Alt + Shift + S)">
+          <i class="fa-solid fa-arrow-pointer"></i>
+          <span>Swarm Cursors</span>
         </button>
         <a href="#contact" class="btn-primary-sm">Liên hệ</a>
       </div>
@@ -55,24 +54,24 @@
           Hiện đang là sinh viên chuyên ngành Công nghệ Thông tin tại Trường Đại học Văn Lang.
         </p>
 
-        <!-- Quick Info Tags -->
+        <!-- Quick Info Frosted Pink Windows -->
         <div class="info-badges">
-          <div class="badge-item">
-            <i class="fa-solid fa-id-card text-cyan"></i>
+          <div class="badge-item glass-panel-mini">
+            <i class="fa-solid fa-id-card text-rose"></i>
             <div>
               <small>Mã số sinh viên</small>
               <strong>2674802010764</strong>
             </div>
           </div>
-          <div class="badge-item">
-            <i class="fa-solid fa-users-rectangle text-purple"></i>
+          <div class="badge-item glass-panel-mini">
+            <i class="fa-solid fa-users-rectangle text-pink"></i>
             <div>
               <small>Lớp học phần</small>
               <strong>71K32CNTT03</strong>
             </div>
           </div>
-          <div class="badge-item">
-            <i class="fa-solid fa-building-columns text-orange"></i>
+          <div class="badge-item glass-panel-mini">
+            <i class="fa-solid fa-building-columns text-sakura"></i>
             <div>
               <small>Khoa đào tạo</small>
               <strong>Công nghệ Thông tin - VLU</strong>
@@ -87,12 +86,20 @@
           <a href="#courses" class="btn btn-secondary">
             <i class="fa-solid fa-book-open"></i> Các môn đang học
           </a>
+          <button type="button" id="heroSwarmBtn" class="btn btn-secondary" title="Phát lại hiệu ứng đàn trỏ chuột Swarm Cursors (Alt + Shift + S)">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> Hiệu ứng Swarm
+          </button>
         </div>
       </div>
 
-      <!-- Hero Card / Profile Card -->
+      <!-- Hero Card / Frosted Pink Profile Window -->
       <div class="hero-card-wrapper">
         <div class="profile-card glass-panel">
+          <div class="window-dots" aria-hidden="true">
+            <span class="w-dot dot-1"></span>
+            <span class="w-dot dot-2"></span>
+            <span class="w-dot dot-3"></span>
+          </div>
           <div class="profile-avatar-box">
             <div class="avatar-gradient">
               <span class="avatar-initials">APT</span>
@@ -125,9 +132,9 @@
           </div>
 
           <div class="social-links">
-            <a href="#" class="social-btn" title="GitHub"><i class="fa-brands fa-github"></i></a>
-            <a href="#" class="social-btn" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-            <a href="#" class="social-btn" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://github.com/hapboitien2008" target="_blank" rel="noopener" class="social-btn" title="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="#education" class="social-btn" title="Học vấn"><i class="fa-solid fa-graduation-cap"></i></a>
+            <a href="#courses" class="social-btn" title="Môn học CNTT"><i class="fa-solid fa-laptop-code"></i></a>
             <a href="mailto:tien.2674802010764@vanlanguni.vn" class="social-btn" title="Gửi Email"><i class="fa-solid fa-envelope"></i></a>
           </div>
         </div>
@@ -146,7 +153,7 @@
 
       <div class="about-grid">
         <div class="about-card glass-panel">
-          <div class="about-icon bg-blue"><i class="fa-solid fa-user-astronaut"></i></div>
+          <div class="about-icon bg-pink-1"><i class="fa-solid fa-user-astronaut"></i></div>
           <h3>Định hướng phát triển</h3>
           <p>
             Mục tiêu trở thành một Kỹ sư phần mềm (Full-stack / Software Engineer) chuyên nghiệp, 
@@ -155,7 +162,7 @@
         </div>
 
         <div class="about-card glass-panel">
-          <div class="about-icon bg-purple"><i class="fa-solid fa-compass"></i></div>
+          <div class="about-icon bg-pink-2"><i class="fa-solid fa-compass"></i></div>
           <h3>Phương châm học tập</h3>
           <p>
             <em>"Học đi đôi với hành – Không ngừng khám phá công nghệ mới."</em> 
@@ -164,7 +171,7 @@
         </div>
 
         <div class="about-card glass-panel">
-          <div class="about-icon bg-pink"><i class="fa-solid fa-lightbulb"></i></div>
+          <div class="about-icon bg-pink-3"><i class="fa-solid fa-lightbulb"></i></div>
           <h3>Sở thích & Kỹ năng mềm</h3>
           <p>
             Đam mê nghiên cứu thuật toán, tìm hiểu công nghệ AI, thiết kế giao diện người dùng trực quan. 
@@ -176,7 +183,7 @@
   </section>
 
   <!-- Section: Học vấn (Trường Phổ Thông & Đại Học Kèm Ảnh) -->
-  <section class="section bg-section" id="education">
+  <section class="section" id="education">
     <div class="container">
       <div class="section-header text-center">
         <span class="section-tag"><i class="fa-solid fa-graduation-cap"></i> Lộ trình phát triển</span>
@@ -269,15 +276,15 @@
         <button class="filter-btn" data-filter="system">Hệ thống & Dữ liệu</button>
       </div>
 
-      <!-- Course Cards Grid -->
+      <!-- Course Cards Grid (Frosted Pink Windows) -->
       <div class="courses-grid">
         <!-- Môn 1: Lập trình Web -->
         <div class="course-card glass-panel" data-category="dev">
           <div class="course-top">
             <span class="course-code">IT301 • 3 Tín chỉ</span>
-            <span class="status-badge status-progress"><i class="fa-solid fa-spinner fa-spin"></i> Đang học</span>
+            <span class="status-badge status-progress"><i class="fa-solid fa-circle-dot"></i> Đang học</span>
           </div>
-          <div class="course-icon text-cyan"><i class="fa-brands fa-html5"></i></div>
+          <div class="course-icon text-rose"><i class="fa-brands fa-html5"></i></div>
           <h4 class="course-name">Lập Trình Web (Web Development)</h4>
           <p class="course-desc">
             Xây dựng giao diện web chuẩn responsive hiện đại (HTML5, CSS3, JavaScript ES6+), làm quen với kiến trúc Client-Server, RESTful API và các framework Web frontend/backend.
@@ -301,9 +308,9 @@
         <div class="course-card glass-panel" data-category="core">
           <div class="course-top">
             <span class="course-code">IT202 • 4 Tín chỉ</span>
-            <span class="status-badge status-progress"><i class="fa-solid fa-spinner fa-spin"></i> Đang học</span>
+            <span class="status-badge status-progress"><i class="fa-solid fa-circle-dot"></i> Đang học</span>
           </div>
-          <div class="course-icon text-purple"><i class="fa-solid fa-diagram-project"></i></div>
+          <div class="course-icon text-pink"><i class="fa-solid fa-diagram-project"></i></div>
           <h4 class="course-name">Cấu Trúc Dữ Liệu & Giải Thuật (DSA)</h4>
           <p class="course-desc">
             Nghiên cứu các cấu trúc dữ liệu kinh điển (Mảng, Danh sách liên kết, Ngăn xếp, Hàng đợi, Cây nhị phân, Đồ thị) cùng các thuật toán tìm kiếm, sắp xếp và tối ưu hóa độ phức tạp thuật toán.
@@ -327,9 +334,9 @@
         <div class="course-card glass-panel" data-category="system">
           <div class="course-top">
             <span class="course-code">IT204 • 3 Tín chỉ</span>
-            <span class="status-badge status-progress"><i class="fa-solid fa-spinner fa-spin"></i> Đang học</span>
+            <span class="status-badge status-progress"><i class="fa-solid fa-circle-dot"></i> Đang học</span>
           </div>
-          <div class="course-icon text-orange"><i class="fa-solid fa-database"></i></div>
+          <div class="course-icon text-sakura"><i class="fa-solid fa-database"></i></div>
           <h4 class="course-name">Hệ Quản Trị Cơ Sở Dữ Liệu (DBMS)</h4>
           <p class="course-desc">
             Thiết kế mô hình thực thể mối quan hệ (ERD), chuẩn hóa dữ liệu (1NF, 2NF, 3NF), viết truy vấn nâng cao SQL, chỉ mục (Indexing), giao dịch (Transactions) và bảo toàn tính toàn vẹn dữ liệu.
@@ -353,9 +360,9 @@
         <div class="course-card glass-panel" data-category="dev">
           <div class="course-top">
             <span class="course-code">IT201 • 3 Tín chỉ</span>
-            <span class="status-badge status-progress"><i class="fa-solid fa-spinner fa-spin"></i> Đang học</span>
+            <span class="status-badge status-progress"><i class="fa-solid fa-circle-dot"></i> Đang học</span>
           </div>
-          <div class="course-icon text-green"><i class="fa-brands fa-java"></i></div>
+          <div class="course-icon text-rose"><i class="fa-brands fa-java"></i></div>
           <h4 class="course-name">Lập Trình Hướng Đối Tượng (OOP)</h4>
           <p class="course-desc">
             Thấm nhuần 4 tính chất cốt lõi: Đóng gói (Encapsulation), Kế thừa (Inheritance), Đa hình (Polymorphism) và Trừu tượng (Abstraction), kết hợp các mẫu thiết kế (Design Patterns) cơ bản.
@@ -379,9 +386,9 @@
         <div class="course-card glass-panel" data-category="system">
           <div class="course-top">
             <span class="course-code">IT305 • 3 Tín chỉ</span>
-            <span class="status-badge status-progress"><i class="fa-solid fa-spinner fa-spin"></i> Đang học</span>
+            <span class="status-badge status-progress"><i class="fa-solid fa-circle-dot"></i> Đang học</span>
           </div>
-          <div class="course-icon text-blue"><i class="fa-solid fa-network-wired"></i></div>
+          <div class="course-icon text-pink"><i class="fa-solid fa-network-wired"></i></div>
           <h4 class="course-name">Mạng Máy Tính (Computer Networks)</h4>
           <p class="course-desc">
             Tìm hiểu mô hình OSI 7 tầng, bộ giao thức TCP/IP, phân chia mạng con (Subnetting), định tuyến (Routing), cấu hình địa chỉ IP và các giao thức mạng phổ biến như HTTP/HTTPS, DNS, DHCP.
@@ -405,9 +412,9 @@
         <div class="course-card glass-panel" data-category="core">
           <div class="course-top">
             <span class="course-code">IT206 • 3 Tín chỉ</span>
-            <span class="status-badge status-progress"><i class="fa-solid fa-spinner fa-spin"></i> Đang học</span>
+            <span class="status-badge status-progress"><i class="fa-solid fa-circle-dot"></i> Đang học</span>
           </div>
-          <div class="course-icon text-pink"><i class="fa-solid fa-microchip"></i></div>
+          <div class="course-icon text-sakura"><i class="fa-solid fa-microchip"></i></div>
           <h4 class="course-name">Hệ Điều Hành & Kiến Trúc Máy Tính</h4>
           <p class="course-desc">
             Nguyên lý quản lý tiến trình (Process & Thread), lập lịch CPU, bộ nhớ ảo (Virtual Memory), quản lý tập tin, lệnh Shell trong Linux và cơ chế đồng bộ hóa luồng (Deadlock & Semaphore).
@@ -431,7 +438,7 @@
   </section>
 
   <!-- Section: Kỹ năng & Công cụ -->
-  <section class="section bg-section" id="skills">
+  <section class="section" id="skills">
     <div class="container">
       <div class="section-header text-center">
         <span class="section-tag"><i class="fa-solid fa-screwdriver-wrench"></i> Năng lực công nghệ</span>
@@ -442,7 +449,7 @@
       <div class="skills-grid">
         <div class="skill-box glass-panel">
           <div class="skill-head">
-            <i class="fa-solid fa-code text-cyan"></i>
+            <i class="fa-solid fa-code text-rose"></i>
             <h4>Ngôn ngữ lập trình</h4>
           </div>
           <ul class="skill-list">
@@ -455,12 +462,12 @@
 
         <div class="skill-box glass-panel">
           <div class="skill-head">
-            <i class="fa-solid fa-globe text-purple"></i>
+            <i class="fa-solid fa-globe text-pink"></i>
             <h4>Công nghệ Web & Frontend</h4>
           </div>
           <ul class="skill-list">
             <li><span>HTML5 / Semantic Web</span> <span class="badge-rate">Thành thạo</span></li>
-            <li><span>CSS3 / Flexbox / Grid / Animations</span> <span class="badge-rate">Thành thạo</span></li>
+            <li><span>CSS3 / Flexbox / Grid / Blur UI</span> <span class="badge-rate">Thành thạo</span></li>
             <li><span>Responsive Web Design (Mobile First)</span> <span class="badge-rate">Tốt</span></li>
             <li><span>RESTful API / JSON integration</span> <span class="badge-rate">Cơ bản</span></li>
           </ul>
@@ -468,7 +475,7 @@
 
         <div class="skill-box glass-panel">
           <div class="skill-head">
-            <i class="fa-solid fa-server text-orange"></i>
+            <i class="fa-solid fa-server text-sakura"></i>
             <h4>Dữ liệu & Công cụ phát triển</h4>
           </div>
           <ul class="skill-list">
@@ -482,39 +489,45 @@
     </div>
   </section>
 
-  <!-- Contact & Footer Section -->
+  <!-- Contact & Footer Section (Frosted Pink Window on Pure White Background) -->
   <footer class="footer" id="contact">
-    <div class="container footer-content">
-      <div class="footer-top">
-        <div class="footer-info">
-          <h3>Âu Phước Tiến</h3>
-          <p>Sinh viên Khoa Công nghệ Thông tin — Trường Đại học Văn Lang (VLU)</p>
-          <div class="student-footer-pill">
-            <span><strong>MSSV:</strong> 2674802010764</span>
-            <span>•</span>
-            <span><strong>Lớp:</strong> 71K32CNTT03</span>
+    <div class="container">
+      <div class="footer-window glass-panel">
+        <div class="footer-top">
+          <div class="footer-info">
+            <h3>Âu Phước Tiến</h3>
+            <p>Sinh viên Khoa Công nghệ Thông tin — Trường Đại học Văn Lang (VLU)</p>
+            <div class="student-footer-pill">
+              <span><strong>MSSV:</strong> 2674802010764</span>
+              <span>•</span>
+              <span><strong>Lớp:</strong> 71K32CNTT03</span>
+              <span>•</span>
+              <span><strong>Email:</strong> tien.2674802010764@vanlanguni.vn</span>
+            </div>
+          </div>
+          <div class="footer-contact">
+            <a href="mailto:tien.2674802010764@vanlanguni.vn" class="btn btn-primary">
+              <i class="fa-solid fa-paper-plane"></i> Gửi tin nhắn qua Email
+            </a>
           </div>
         </div>
-        <div class="footer-contact">
-          <a href="mailto:tien.2674802010764@vanlanguni.vn" class="btn btn-primary">
-            <i class="fa-solid fa-paper-plane"></i> Gửi tin nhắn qua Email
-          </a>
+        <div class="footer-bottom">
+          <p>© 2026 <strong>Âu Phước Tiến</strong>. Hồ sơ lí lịch trực tuyến phiên bản Pink & White Glassmorphism.</p>
+          <p class="footer-schools">THPT Lạc Hồng ➔ Đại học Văn Lang (VLU) ➔ Kỹ sư Công nghệ Thông tin</p>
         </div>
-      </div>
-      <div class="footer-bottom">
-        <p>© 2026 <strong>Âu Phước Tiến</strong>. Hồ sơ lí lịch trực tuyến được thiết kế hoàn thiện.</p>
-        <p class="footer-schools">THPT Lạc Hồng ➔ Đại học Văn Lang (VLU) ➔ Kỹ sư Công nghệ Thông tin</p>
       </div>
     </div>
   </footer>
 
-  <!-- Lightbox Modal for School Photos -->
+  <!-- Frosted Pink Lightbox Modal for School Photos -->
   <div id="imageLightbox" class="lightbox" onclick="closeLightbox()">
     <span class="lightbox-close">&times;</span>
-    <img class="lightbox-content" id="lightboxImg">
+    <img class="lightbox-content" id="lightboxImg" alt="Ảnh trường học phóng to">
     <div id="lightboxCaption" class="lightbox-caption"></div>
   </div>
 
+  <!-- Swarm Cursors Engine (https://github.com/DhvanilPatel/swarm-cursors) -->
+  <script src="swarm.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
