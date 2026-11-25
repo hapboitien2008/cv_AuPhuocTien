@@ -35,6 +35,12 @@
   --window-shadow-hover: 0 18px 40px rgba(236, 72, 153, 0.19), inset 0 1px 1px rgba(255, 255, 255, 0.96);
   --btn-glow: 0 8px 22px rgba(236, 72, 153, 0.28);
   --transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Taste-Skill 2.5 Motion & Micro-interaction Tokens */
+  --m-in: 150ms;
+  --m-out: 120ms;
+  --m-press: 90ms;
+  --m-ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 *, *::before, *::after {
@@ -80,6 +86,41 @@ button, input, select, textarea {
   font-family: var(--font-main);
 }
 
+:focus-visible {
+  outline: 2px solid var(--accent-rose);
+  outline-offset: 3px;
+}
+
+/* Taste-Skill Accessible Skip Link */
+.skip-link {
+  position: absolute;
+  top: -120px;
+  left: 1.5rem;
+  background: var(--gradient-primary);
+  color: #ffffff;
+  padding: 0.6rem 1.3rem;
+  border-radius: 100px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  z-index: 1000;
+  text-decoration: none;
+  box-shadow: var(--btn-glow);
+  transition: top 0.2s var(--m-ease);
+}
+
+.skip-link:focus-visible {
+  top: 1.5rem;
+  outline: 3px solid #ffffff;
+  outline-offset: 2px;
+}
+
+/* Section Anchor Spacing (prevents navbar overlap) */
+.hero-section,
+.section,
+.footer {
+  scroll-margin-top: 86px;
+}
+
 /* Container */
 .container {
   width: 90%;
@@ -91,18 +132,20 @@ button, input, select, textarea {
 /* Frosted Pink Glass Windows (Cửa sổ tông hồng + Blur) */
 .glass-panel {
   background: var(--pink-window-bg);
-  backdrop-filter: blur(18px) saturate(165%);
-  -webkit-backdrop-filter: blur(18px) saturate(165%);
+  backdrop-filter: blur(20px) saturate(175%);
+  -webkit-backdrop-filter: blur(20px) saturate(175%);
   border: 1px solid var(--pink-border);
   border-radius: 22px;
   box-shadow: var(--window-shadow);
-  transition: var(--transition);
+  transition: transform 0.28s var(--m-ease), box-shadow 0.28s var(--m-ease), border-color 0.24s ease;
 }
 
-.glass-panel:hover {
-  border-color: var(--pink-border-hover);
-  box-shadow: var(--window-shadow-hover);
-  transform: translateY(-4px);
+@media (hover: hover) and (pointer: fine) {
+  .glass-panel:hover {
+    border-color: var(--pink-border-hover);
+    box-shadow: var(--window-shadow-hover);
+    transform: translateY(-3px);
+  }
 }
 
 .glass-panel-mini {
@@ -454,9 +497,20 @@ button, input, select, textarea {
   font-weight: 700;
   text-decoration: none;
   font-size: 0.93rem;
-  transition: var(--transition);
+  transition: transform var(--m-press) var(--m-ease), background var(--m-out) var(--m-ease), color var(--m-out) var(--m-ease), border-color var(--m-out) var(--m-ease), box-shadow var(--m-out) var(--m-ease);
   cursor: pointer;
   border: none;
+  position: relative;
+}
+
+.btn:active {
+  transform: translateY(1px) scale(0.985);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover {
+    transform: translateY(-1.5px);
+  }
 }
 
 .btn-primary {
@@ -465,23 +519,74 @@ button, input, select, textarea {
   box-shadow: var(--btn-glow);
 }
 
-.btn-primary:hover {
-  transform: translateY(-2px);
-  filter: brightness(1.05);
+@media (hover: hover) and (pointer: fine) {
+  .btn-primary:hover {
+    filter: brightness(1.04);
+    box-shadow: 0 10px 26px rgba(236, 72, 153, 0.35);
+  }
 }
 
 .btn-secondary {
-  background: rgba(255, 228, 240, 0.72);
+  background: rgba(255, 228, 240, 0.76);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   color: var(--accent-rose);
   border: 1px solid var(--pink-border);
 }
 
-.btn-secondary:hover {
-  background: rgba(255, 214, 232, 0.9);
-  border-color: var(--pink-border-hover);
-  transform: translateY(-2px);
+@media (hover: hover) and (pointer: fine) {
+  .btn-secondary:hover {
+    background: rgba(255, 214, 232, 0.95);
+    border-color: var(--pink-border-hover);
+    box-shadow: 0 6px 18px rgba(236, 72, 153, 0.14);
+  }
+}
+
+/* Taste-Skill 2.5 Hero Entrance Micro-Animation */
+@keyframes tasteHeroEnter {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-text .badge-role {
+  animation: tasteHeroEnter 0.55s var(--m-ease) 0.05s backwards;
+}
+
+.hero-text .hero-title {
+  animation: tasteHeroEnter 0.6s var(--m-ease) 0.12s backwards;
+}
+
+.hero-text .hero-desc {
+  animation: tasteHeroEnter 0.6s var(--m-ease) 0.18s backwards;
+}
+
+.hero-text .info-badges {
+  animation: tasteHeroEnter 0.65s var(--m-ease) 0.24s backwards;
+}
+
+.hero-text .hero-cta {
+  animation: tasteHeroEnter 0.65s var(--m-ease) 0.30s backwards;
+}
+
+.profile-card {
+  animation: tasteHeroEnter 0.7s var(--m-ease) 0.15s backwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-text .badge-role,
+  .hero-text .hero-title,
+  .hero-text .hero-desc,
+  .hero-text .info-badges,
+  .hero-text .hero-cta,
+  .profile-card {
+    animation: none !important;
+  }
 }
 
 /* Profile Hero Window Card */
@@ -771,12 +876,14 @@ button, input, select, textarea {
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.5s ease;
+  transition: transform 0.45s var(--m-ease);
   cursor: pointer;
 }
 
-.edu-card:hover .edu-img {
-  transform: scale(1.04);
+@media (hover: hover) and (pointer: fine) {
+  .edu-card:hover .edu-img {
+    transform: scale(1.035);
+  }
 }
 
 .media-badge {
@@ -961,7 +1068,17 @@ button, input, select, textarea {
   font-size: 0.9rem;
   font-weight: 700;
   cursor: pointer;
-  transition: var(--transition);
+  transition: transform var(--m-press) var(--m-ease), background var(--m-out) var(--m-ease), color var(--m-out) var(--m-ease), border-color var(--m-out) var(--m-ease), box-shadow var(--m-out) var(--m-ease);
+}
+
+.filter-btn:active {
+  transform: translateY(1px) scale(0.985);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .filter-btn:hover {
+    transform: translateY(-1.5px);
+  }
 }
 
 .filter-btn:hover,
