@@ -3223,8 +3223,8 @@
       }
       const crew = Math.max(MIN_AGENTS, E.cursors.filter((c) => !c.leaving).length);
       const backlog = E.backlog();
-      const target = backlog <= Math.max(18, crew * 1.2) ? 205 : backlog <= crew * 2.4 ? 155 : 120;
-      this.tourV += (target - this.tourV) * Math.min(1, dt * 1.8);
+      const target = backlog <= Math.max(20, crew * 1.4) ? 290 : backlog <= crew * 2.8 ? 230 : 180;
+      this.tourV += (target - this.tourV) * Math.min(1, dt * 2.4);
       this.tourAcc += this.tourV * dt;
       if (this.tourAcc >= 1) {
         const d = Math.floor(this.tourAcc);
