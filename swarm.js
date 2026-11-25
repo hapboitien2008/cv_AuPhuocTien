@@ -38,10 +38,11 @@
   const BLUE = "#EC4899";
   const RED = "#F43F5E";
   const RULER = 20;
-  const MIN_AGENTS = 24;
-  const MAX_AGENTS = 64;
-  const FLOCK_AGENTS = 52;
-  const INTRO_AGENTS = 28;
+  const isCompact = typeof innerWidth !== "undefined" && innerWidth < 768;
+  const MIN_AGENTS = isCompact ? 5 : 8;
+  const MAX_AGENTS = isCompact ? 9 : 16;
+  const FLOCK_AGENTS = isCompact ? 6 : 10;
+  const INTRO_AGENTS = isCompact ? 6 : 10;
   const MAX_ITEMS = 4000;
   const MAX_WORLD_H = 40000;
   const SVGNS = "http://www.w3.org/2000/svg";
@@ -2409,7 +2410,8 @@
 
     flock(dt) {
       this.spawnCooldown -= dt;
-      if (this.cursors.length < FLOCK_AGENTS && this.spawnCooldown <= 0 && !this.releasing) {
+      const active = this.cursors.filter((c) => !c.leaving);
+      if (active.length < FLOCK_AGENTS && this.spawnCooldown <= 0 && !this.releasing) {
         const vp = this.vp;
         const left = Math.random() < 0.5;
         const p = this.fromViewport(left ? vp.ox - 30 : vp.ox + vp.vw + 30, vp.oy + rand(0.1, 0.9) * vp.vh);
@@ -2417,14 +2419,28 @@
         c.follow = true;
         this.cursors.push(c);
         this.spawnCooldown = 0.04;
-      }
-      if (this.releasing) {
-        for (const c of [...this.cursors]) {
-          if (!c.gen) c.gen = this.leave(c);
-          if (c.gen.next(dt).done) this.cursors.splice(this.cursors.indexOf(c), 1);
+      } else if (active.length > FLOCK_AGENTS && this.spawnCooldown <= 0 && !this.releasing) {
+        let excess = active[active.length - 1];
+        for (let i = active.length - 1; i >= 0; i--) {
+          if (!active[i].home) {
+            excess = active[i];
+            break;
+          }
         }
-        return;
+        excess.leaving = true;
+        excess.follow = false;
+        excess.gen = this.leave(excess);
+        this.spawnCooldown = 0.08;
       }
+      for (const c of [...this.cursors]) {
+        if (!this.releasing && !c.leaving) continue;
+        if (!c.gen) c.gen = this.leave(c);
+        if (c.gen.next(dt).done) {
+          const idx = this.cursors.indexOf(c);
+          if (idx !== -1) this.cursors.splice(idx, 1);
+        }
+      }
+      if (this.releasing) return;
       if (this.view && this.view.liveFlock) {
         const sy = this.vp.sy;
         if (this._flockSy != null && sy !== this._flockSy) {
@@ -2434,7 +2450,7 @@
         }
         this._flockSy = sy;
       }
-      this.follow(dt, this.cursors);
+      this.follow(dt, this.cursors.filter((c) => !c.leaving));
     }
 
     // Boids-ish orbit around a target, ported from the original.
@@ -2448,7 +2464,7 @@
         this.tv.y += ((m.y - this.lastT.y) / dt - this.tv.y) * k;
       }
       this.lastT = m;
-      const R = 135 * scale * (1 + 0.18 * Math.sin(time * 0.55));
+      const R = (isCompact ? 105 : 165) * scale * (1 + 0.18 * Math.sin(time * 0.55));
       const swirl = Math.tanh(Math.cos(time * 0.11) * 3);
       const want = [];
       for (const c of list) {
