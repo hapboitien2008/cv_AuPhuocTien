@@ -1,8 +1,11 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="vi" data-type="software" data-radius="soft" data-buttons="pill" data-motion="on">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="page-type" content="software">
+  <meta name="site-kind" content="software">
+  <meta name="description" content="Lí lịch trực tuyến và hồ sơ năng lực Công nghệ Thông tin của sinh viên Âu Phước Tiến (71K32CNTT03) - Trường Đại học Văn Lang.">
   <title>Lí Lịch Trực Tuyến - Âu Phước Tiến (71K32CNTT03)</title>
   <script>
     if ('scrollRestoration' in history) {
@@ -24,11 +27,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="stylesheet" href="style.css?v=2026111811">
+  <link rel="stylesheet" href="style.css?v=2026112501">
 </head>
 <body>
+  <!-- Accessible Skip Link (Taste-Skill Anti-Slop Standard) -->
+  <a href="#mainContent" class="skip-link">Chuyển đến nội dung chính</a>
+
   <!-- Frosted Pink Glass Navigation Bar -->
-  <nav class="navbar">
+  <nav class="navbar" role="navigation" aria-label="Điều hướng chính">
     <div class="nav-container">
       <div class="nav-brand-wrap">
         <button type="button" id="menuToggleBtn" class="brand-code" aria-expanded="false" aria-haspopup="true" title="Mở Menu điều hướng nhanh">Menu</button>
@@ -177,7 +183,9 @@
     </div>
   </header>
 
-  <!-- Section: Giới thiệu bản thân -->
+  <!-- Main Content Landmark -->
+  <main id="mainContent">
+    <!-- Section: Giới thiệu bản thân -->
   <section class="section" id="about">
     <div class="container">
       <div class="section-header text-center">
@@ -231,7 +239,7 @@
         <div class="edu-card glass-panel">
           <div class="edu-media">
             <img src="assets/thpt_lachong.jpg" alt="Trường THPT Lạc Hồng" class="edu-img" onclick="openLightbox(this.src, 'Trường THCS & THPT Lạc Hồng - TP. Hồ Chí Minh')">
-            <span class="media-badge"><i class="fa-solid fa-camera"></i> Ảnh thực tế</span>
+            <span class="media-badge"><i class="fa-solid fa-school-flag"></i> Cơ sở Q.12</span>
           </div>
           <div class="edu-content">
             <div class="edu-header">
@@ -523,6 +531,7 @@
       </div>
     </div>
   </section>
+  </main>
 
   <!-- Contact & Footer Section (Frosted Pink Window on Pure White Background) -->
   <footer class="footer" id="contact">
@@ -587,7 +596,7 @@
   <!-- Spotify Official Embed IFrame API -->
   <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
   <!-- Swarm Cursors Engine (https://github.com/DhvanilPatel/swarm-cursors) -->
-  <script src="swarm.js?v=2026111811"></script>
-  <script src="script.js?v=2026111811"></script>
+  <script src="swarm.js?v=2026112501"></script>
+  <script src="script.js?v=2026112501"></script>
 </body>
 </html>
